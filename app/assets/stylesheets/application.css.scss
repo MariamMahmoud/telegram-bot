@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ @import "semantic-ui";
+
+.chatbox {
+    height: 450px;
+}
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
