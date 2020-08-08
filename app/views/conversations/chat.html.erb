@@ -25,40 +25,28 @@
         <div class="ui fluid raised card chatbox">
             <div class="content">
                 <div class="ui small feed">
-                    <div class="event">
-                        <div class="content">
-                            <div class="summary">
-                                <em>Elliot Fu</em>: test message
+                    <% @messages.each do |message| %>
+                        <div class="event">
+                            <div class="content">
+                                <div class="summary">
+                                    <em><%= message.author.name %></em>: <%= message.body %>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <div class="summary">
-                                <em>Stevie Feliciano</em>: test message
-                            </div>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <div class="summary">
-                                <em>Helen Troy</em>: test message
-                            </div>
-                        </div>
-                    </div>
+                    <% end %>
                 </div>
+                <div class="extra content">
+                    <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path) do |f| %>
+                        <div class="field">
+                            <div class="ui fluid icon input">
+                            <%= f.text_field :body, placeholder: "Give me a command..."%>
+                                <%= f.button '<i class="bordered inverted blue icon edit"></i>'.html_safe %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>    
             </div>
-            <div class="extra content">
-            <form class="ui reply form">
-                <div class="field">
-                    <div class="ui fluid icon input">
-                        <input type="text" placeholder="Give me a command...">
-                        <i class="bordered inverted blue icon edit"></i>
-                    </div>
-                </div>
-                
-            </form>
-            </div>
+            
         </div>
     </div>
 </div>
