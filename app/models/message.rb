@@ -6,5 +6,4 @@ class Message < ApplicationRecord
   validates :body, presence: true
 
   scope :display_in_order, -> { order(:created_at).last(15) }
-
 end
