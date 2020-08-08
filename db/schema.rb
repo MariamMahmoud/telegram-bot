@@ -10,34 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_072803) do
-
-  create_table "conversations", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "author_id"
-    t.integer "receiver_id"
-    t.index ["author_id"], name: "index_conversations_on_author_id", unique: true
-    t.index ["receiver_id"], name: "index_conversations_on_receiver_id", unique: true
-  end
-
-  create_table "conversations_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "conversation_id"
-    t.index ["conversation_id"], name: "index_conversations_users_on_conversation_id"
-    t.index ["user_id"], name: "index_conversations_users_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_08_06_123148) do
 
   create_table "messages", force: :cascade do |t|
     t.integer "author_id"
     t.integer "receiver_id"
-    t.integer "conversation_id"
     t.string "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_id"], name: "index_messages_on_author_id", unique: true
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id", unique: true
-    t.index ["receiver_id"], name: "index_messages_on_receiver_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,12 +27,4 @@ ActiveRecord::Schema.define(version: 2020_08_07_072803) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users_conversations", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "conversation_id"
-    t.index ["conversation_id"], name: "index_users_conversations_on_conversation_id"
-    t.index ["user_id"], name: "index_users_conversations_on_user_id"
-  end
-
-  add_foreign_key "messages", "conversations"
 end
